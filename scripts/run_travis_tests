@@ -4,7 +4,7 @@ set -e
 
 # Start the server running on port 8000.
 ./target/debug/hangry-river-horse > out.log 2> err.log &
-curl localhost || true
+curl localhost:8000 || true
 
 # Install a recent version of Node.
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
@@ -16,6 +16,6 @@ npm install selenium-webdriver
 node tests/selenium_tests.js || {
     cat out.log || true
     cat err.log || true
-    curl localhost || true
+    curl localhost:8000 || true
     exit 1
 }
