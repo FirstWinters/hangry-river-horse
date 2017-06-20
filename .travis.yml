@@ -4,8 +4,9 @@ rust:
 cache: cargo
 script:
 - cargo test
+- scripts/run_travis_tests
 before_deploy:
-- >
+- |
   if ! [ "$BEFORE_DEPLOY_RUN" ]; then
     cargo build --release
     mv target/release/hangry-river-horse .
@@ -13,6 +14,8 @@ before_deploy:
     mkdir -p dpl_cd_upload
     mv latest.zip dpl_cd_upload/latest.zip
   fi
+addons:
+  sauce_connect: true
 deploy:
 - provider: s3
   access_key_id: AKIAIOLLQXCYHSGK2BVA
@@ -32,3 +35,8 @@ deploy:
   application: DemoApplication
   deployment_group: production
   on: *2
+
+env:
+  global:
+  - secure: olm2kYdWL6AFPiv2Ti2gkZtULqJ0TDq013fXHdTyHhIJ3pjQ03X7yM1rPcVnNgfilTNDOLOOlXYZKBOA0Hl5K+W09FYuMSR21g4CUAl6JyV5hXczSHO0+VjeNRgo4Ye3UGLPFHMwbmGKAKcIUoeKQ/AjCcg1PiVuJEK3gXBsbfJ9iV8XLnKZwHfk+TTnY7YIvEKwra9elvO4IQGw3V4mqPya3os/NStJqfrVz4j4rgXORIkhTSrIB9giSFMCpYNvy3Q048sVIqmxeWKSNwiBXoPZoT2Rd8Hms9YdwUaVkEW8nwQ62D4y41S0lruct08IDjZEUIprrYMfIcTDsl7A5OLs4BXQw/GDt/id9zdu5CcqlVLFHgG8hFDlxmRnstpekwWPd3WdZstIxcCzSh3km0rYEt1PKd4nOxPq5hq3sus4pEJ/uKAyBdstRhKLJjmcExM6QJFFjtBv/dUDrDaxLhYg7aZGAQD5K97xVv4ecb03BKEmA4Axabuo3sADpS2illnvYB9IjNfEa3pFei+PNUqQ/qejDo94+Itwt85Az9DDAc/HwNy5z/j+c7FbqqH3Vn7272n9ieS6sfjNQZfrVRqcK+1cHVbMIJU4dnCY6fBVrNmgg38q9rB3GwV4qQZohgWN1jOmBezcZ1ztZ4160fN7Tarjp39Jptrxv++WBIo=
+  - secure: aDa+SvImdJIv0v6pVE0ryT9bqi1ZJH324WhglpWJMPrb1ebWVCDbitkhBI/ELfv65XpQqM0QkWNdamuTfrEdM6eislvsKHkg/TzaZ/erVSKPbHzh+cjBj7mB/kYIhcwzW+GY5M10MJWehkkCQ6FlohHSIh+lYwR+qbmevDAppsuZJ+EZtqGJ2bm9u5iL72xagAdfOy20g2nZUmIsGG9drZnJrXCNkNvvx5B1/aScUEEh9onTtnC0yiCH5/J/tSfCvgVQKACrBUull14rpqSAEGLEE3URl/qRi7U4uGLFLMzTDuVWPeLwqGpyJ5aWUYcm3tRbcdHsDrhW00rcT9nqp1WbbISdf7Lk4Jn3CFNJFJ3g9jJ/aINbNUPZWe5XGBGG2V7HcKuEMLEPWDpl1BDo2gUTjco6CPX1jdPFhMqYNEA4SKGHAdKneL54N8cfS44TTIQNXTugqwoEX7xaX29RkPlJl1bh+1f2w6pCy2hDtT3bdGUTNG2KewhObCjL+EI0B1oo4jiGRGXqjWr5pASdR4R9y43/mBlnAIOWHMlvgDHJLmLFhiOa8Cfl0pdwH2kzZvJbA6QVknFzBGsukKM6x13yptKYyFFIj3Olp1/1Bmrm93ZUZ8+hmZGu7B/naptUOrE5QHGfwWC/VHRfCDRvV6ftzV79iEwyPB/hLMB4jqM=

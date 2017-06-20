@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Start the server running on port 8000.
+nohup ./target/debug/hangry-river-horse > out.log 2> err.log &
+
+# Run the node js tests.
+npm install selenium-webdriver
+node tests/selenium_tests.js
