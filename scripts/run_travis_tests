@@ -11,3 +11,6 @@ nvm install 6
 # Run the node js tests.
 npm install selenium-webdriver
 node tests/selenium_tests.js
+
+cat out.log
+cat err.log

@@ -14,7 +14,5 @@ var driver = new webdriver.Builder()
     .build();
 
 driver.get('http://localhost:8000/');
-driver.findElement(By.name('q')).sendKeys('webdriver');
-driver.findElement(By.name('btnG')).click();
-driver.wait(until.titleIs('webdriver - Google Search'), 1000);
+driver.wait(until.titleIs('Hangry River Horse'), 1000);
 driver.quit();
