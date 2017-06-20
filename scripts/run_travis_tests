@@ -4,6 +4,7 @@ set -e
 
 # Start the server running on port 8000.
 ./target/debug/hangry-river-horse > out.log 2> err.log &
+sleep 5
 curl localhost:8000 || true
 
 # Install a recent version of Node.
