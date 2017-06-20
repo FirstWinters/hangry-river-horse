@@ -3,7 +3,7 @@ var webdriver = require('selenium-webdriver'),
     until = webdriver.until;
 
 var driver = new webdriver.Builder()
-    .usingServer('http://' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + '@ondemand.saucelabs.com:80/wd/hub')
+    .usingServer('http://' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + '@localhost:4445/wd/hub')
     .withCapabilities({
         'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
         build: process.env.TRAVIS_BUILD_NUMBER,
