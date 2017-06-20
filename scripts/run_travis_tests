@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Start the server running on port 8000.
 nohup ./target/debug/hangry-river-horse > out.log 2> err.log &
 
@@ -10,7 +12,9 @@ nvm install 6
 
 # Run the node js tests.
 npm install selenium-webdriver
-node tests/selenium_tests.js
-
-cat out.log
-cat err.log
+node tests/selenium_tests.js || {
+    cat out.log
+    cat err.log
+    curl localhost
+    exit 1
+}
