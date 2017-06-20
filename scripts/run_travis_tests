@@ -3,7 +3,7 @@
 set -e
 
 # Start the server running on port 8000.
-nohup ./target/debug/hangry-river-horse > out.log 2> err.log &
+./target/debug/hangry-river-horse &
 
 # Install a recent version of Node.
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
