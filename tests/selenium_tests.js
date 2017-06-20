@@ -1,8 +1,8 @@
-let webdriver = require('selenium-webdriver'),
+var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     until = webdriver.until;
 
-let driver = new webdriver.Builder()
+var driver = new webdriver.Builder()
     .usingServer('http://' + process.env.SAUCE_USERNAME + ':' + process.env.SAUCE_ACCESS_KEY + '@ondemand.saucelabs.com:80/wd/hub')
     .withCapabilities({
         'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
