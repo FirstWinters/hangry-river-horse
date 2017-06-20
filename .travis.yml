@@ -3,6 +3,7 @@ rust:
 - nightly
 cache: cargo
 script:
+- cargo build
 - cargo test
 - scripts/run_travis_tests
 before_deploy:
