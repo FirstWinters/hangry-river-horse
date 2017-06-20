@@ -4,5 +4,6 @@
 nohup ./target/debug/hangry-river-horse > out.log 2> err.log &
 
 # Run the node js tests.
+nvm install 6
 npm install selenium-webdriver
 node tests/selenium_tests.js
