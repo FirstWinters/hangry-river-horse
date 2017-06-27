@@ -53,6 +53,18 @@ pub enum HostBroadcast {
     /// A player has lost the game and should be removed from the display.
     PlayerLose {
         id: PlayerId,
+    },
+
+    /// A hippo has become our new glorious leader.
+    NewLeader {
+        id: PlayerId,
+        top_score: usize,
+    },
+
+    /// A glorious new high score has been achieved.
+    NewHighScore {
+        id: PlayerId,
+        top_score: usize,
     }
 }
 

@@ -165,6 +165,10 @@ pub fn start_game_loop(
     player_broadcaster: PlayerBroadcaster,
 ) {
     thread::spawn(move || {
+        // TODO: I want to do this with the Player type, but... it seems to involve fighting Rust a lot.
+        let mut top_score: Option<usize> = None;
+        let mut top_player: Option<PlayerId> = None;
+
         loop {
             let now = Instant::now();
 
@@ -201,6 +205,23 @@ pub fn start_game_loop(
 
                         // Determine the next time the player's hippo will eat.
                         player.next_eat_time += Duration::from_millis(750);
+
+                        // Is this safe? Does Rust short-circuit?
+                        if top_score.is_none() || player.score > top_score.unwrap() {
+
+                            top_score = Some(player.score);
+
+                            // Notify the hosts that a new high score has been achieved.
+                            host_broadcaster.send(HostBroadcast::NewHighScore { id, top_score: player.score, });
+
+                            if top_player.is_none() || id != top_player.unwrap() {
+
+                                top_player = Some(id);
+
+                                // Notify the hosts that a hippo has gained the lead.
+                                host_broadcaster.send(HostBroadcast::NewLeader { id, top_score: player.score, });
+                            }
+                        }
 
                         true
                     } else {
