@@ -210,6 +210,21 @@ pub fn generate_username() -> String {
         "Hippius Maximus",
         "Hippo California",
         "Chi-town Potamus",
+        "My Hipps Don't Lie",
+        "Hippothead",
+        "Hippodermic Needle",
+        "Hippochondriac",
+        "Hipponosis",
+        "Hippothesis",
+        "Shippo",
+        "Relationshippo",
+        "Battleshippo",
+        "Fellowshippo",
+        "Hippo Bone",
+        "Leadershippo",
+        "Shoot From The Hippo",
+        "Space Shippo",
+        "Worshippo",
     ];
 
     thread_rng().choose(NAMES).unwrap().to_string()
